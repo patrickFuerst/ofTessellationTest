@@ -14,24 +14,26 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    GLsizei const vertexCount(4);
-    ofVec3f const vertexData[vertexCount] = {
+    //   GLsizei const vertexCount(4);
+//    ofVec3f const vertexData[vertexCount] = {
+//    
+//        ofVec3f(-1.0f,-1.0f,0.0f),
+//        ofVec3f(1.0f,-1.0f,0.0f),
+//        ofVec3f(1.0f,1.0f,0.0f),
+//        ofVec3f(-1.0f,1.0f,0.0f),
+//    
+//    };
+//    
+//    ofFloatColor const colorData[vertexCount] = {
+//    
+//        ofFloatColor(1.0f, 0.0f, 0.0f, 1.0f),
+//        ofFloatColor(1.0f, 1.0f, 0.0f, 1.0f),
+//        ofFloatColor(0.0f, 1.0f, 0.0f, 1.0f),
+//        ofFloatColor(0.0f, 0.0f, 1.0f, 1.0f)
+//    
+//    };
+//    
     
-        ofVec3f(-1.0f,-1.0f,0.0f),
-        ofVec3f(1.0f,-1.0f,0.0f),
-        ofVec3f(1.0f,1.0f,0.0f),
-        ofVec3f(-1.0f,1.0f,0.0f),
-    
-    };
-    
-    ofFloatColor const colorData[vertexCount] = {
-    
-        ofFloatColor(1.0f, 0.0f, 0.0f, 1.0f),
-        ofFloatColor(1.0f, 1.0f, 0.0f, 1.0f),
-        ofFloatColor(0.0f, 1.0f, 0.0f, 1.0f),
-        ofFloatColor(0.0f, 0.0f, 1.0f, 1.0f)
-    
-    };
     
 
     mTessellationShader.setupShaderFromFile(GL_VERTEX_SHADER, "tess.vert");
@@ -43,14 +45,16 @@ void ofApp::setup(){
     
     mVbo.enableVAOs();
     mVbo.enableColors();
-    mVbo.setVertexData(vertexData, 4, GL_STATIC_DRAW);
-    mVbo.setColorData(colorData, 4, GL_STATIC_DRAW);
+//    mVbo.setVertexData(vertexData, 4, GL_STATIC_DRAW);
+//    mVbo.setColorData(colorData, 4, GL_STATIC_DRAW);
+    mVbo.setMesh(ofMesh::sphere(1.0f, 4, OF_PRIMITIVE_TRIANGLES), GL_STATIC_DRAW, true, false, false);
     
     // main camera
     mCam.lookAt(ofVec3f::zero());
     mCam.setPosition(0, 0, 4);
     mCam.setFarClip(100);
     mCam.setNearClip(0.01);
+    mCam.setDistance(4);
     mCam.enableMouseInput();
 
 
@@ -58,6 +62,8 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    
+    
 
 }
 
@@ -67,14 +73,15 @@ void ofApp::draw(){
     ofClear(0, 0, 0);
     ofViewport(ofGetWindowRect());
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    
-    ofMatrix4x4 mvp =  mCam.getModelViewProjectionMatrix();
+
+    mCam.begin();
     mTessellationShader.begin();
-    mTessellationShader.setUniformMatrix4f("MVP", mvp);
+    mTessellationShader.setUniformMatrix4f("MVP", mCam.getModelViewProjectionMatrix());
     mVbo.bind();
-    glPatchParameteri(GL_PATCH_VERTICES, 4);
-    mVbo.drawInstanced(GL_PATCHES, 0, 4, 1);
-    
+    glPatchParameteri(GL_PATCH_VERTICES, 3);
+    mVbo.drawElements(GL_PATCHES, mVbo.getNumIndices());
+    //  mVbo.drawInstanced(GL_PATCHES, 0, mVbo.getNumVertices(), 1);
+    mCam.end();
     
     
     //    glm::mat4 Projection = glm::perspective(glm::pi<float>() * 0.25f, WindowSize.x / WindowSize.y, 0.1f, 100.0f);
