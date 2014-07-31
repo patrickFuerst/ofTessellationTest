@@ -1,41 +1,36 @@
+/*
+ * ///////  ///////     ofTestTessellation
+ * //   //  //          (c)  2013-2014 , Patrick FŸrst
+ * //////   ////        patrickfuerst.at
+ * //       //
+ * //       //
+ 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
 #include "ofApp.h"
-
-
-
-
-
-
-
-
-
-
 
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    //   GLsizei const vertexCount(4);
-//    ofVec3f const vertexData[vertexCount] = {
-//    
-//        ofVec3f(-1.0f,-1.0f,0.0f),
-//        ofVec3f(1.0f,-1.0f,0.0f),
-//        ofVec3f(1.0f,1.0f,0.0f),
-//        ofVec3f(-1.0f,1.0f,0.0f),
-//    
-//    };
-//    
-//    ofFloatColor const colorData[vertexCount] = {
-//    
-//        ofFloatColor(1.0f, 0.0f, 0.0f, 1.0f),
-//        ofFloatColor(1.0f, 1.0f, 0.0f, 1.0f),
-//        ofFloatColor(0.0f, 1.0f, 0.0f, 1.0f),
-//        ofFloatColor(0.0f, 0.0f, 1.0f, 1.0f)
-//    
-//    };
-//    
-    
-    
-
     mTessellationShader.setupShaderFromFile(GL_VERTEX_SHADER, "tess.vert");
     mTessellationShader.setupShaderFromFile(GL_FRAGMENT_SHADER, "tess.frag");
     mTessellationShader.setupShaderFromFile(GL_GEOMETRY_SHADER, "tess.geom");
@@ -43,11 +38,16 @@ void ofApp::setup(){
     mTessellationShader.setupShaderFromFile(GL_TESS_EVALUATION_SHADER, "tess.eval");
     mTessellationShader.linkProgram();
     
+    mTessellationLevel = 4;
+    
     mVbo.enableVAOs();
     mVbo.enableColors();
+    mVbo.enableNormals();
 //    mVbo.setVertexData(vertexData, 4, GL_STATIC_DRAW);
 //    mVbo.setColorData(colorData, 4, GL_STATIC_DRAW);
-    mVbo.setMesh(ofMesh::sphere(1.0f, 4, OF_PRIMITIVE_TRIANGLES), GL_STATIC_DRAW, true, false, false);
+  
+    //mVbo.setMesh(ofMesh::sphere(1.0f, 4, OF_PRIMITIVE_TRIANGLES), GL_STATIC_DRAW, true, false, false);
+    mVbo.setMesh(ofMesh::icosahedron(1) , GL_STATIC_DRAW, true, false, false);
     
     // main camera
     mCam.lookAt(ofVec3f::zero());
@@ -77,10 +77,12 @@ void ofApp::draw(){
     mCam.begin();
     mTessellationShader.begin();
     mTessellationShader.setUniformMatrix4f("MVP", mCam.getModelViewProjectionMatrix());
+    mTessellationShader.setUniform1i("tessellationLevel", mTessellationLevel);
     mVbo.bind();
     glPatchParameteri(GL_PATCH_VERTICES, 3);
     mVbo.drawElements(GL_PATCHES, mVbo.getNumIndices());
     //  mVbo.drawInstanced(GL_PATCHES, 0, mVbo.getNumVertices(), 1);
+    mTessellationShader.end();
     mCam.end();
     
     
@@ -102,12 +104,48 @@ void ofApp::draw(){
     //    
     //
     
+    
+    drawInfo();
 
+}
+
+void ofApp::drawInfo(){
+    
+    
+    string info =
+    
+    "Press Key:\n"
+    " +: increase tessellation level \n"
+    " -: decrease tessellation level  \n"
+    " LEVEL: " + ofToString(mTessellationLevel) +"\n"
+    "\n"
+    "///////  ///////     ofTestTessellation \n"
+    "//   //  //          patrickfuerst.at \n"
+    "//////   //// \n"
+    "//       // \n"
+    "//       // ";
+    
+    
+    ofSetColor(0, 255, 0);
+    ofDrawBitmapString( info, 30, ofGetWindowHeight() - 150);
+    ofSetColor(255, 255, 255);
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 
+    switch (key) {
+        case '+':
+            if(mTessellationLevel < 16 ) mTessellationLevel++;
+            break;
+        case '-':
+            if(mTessellationLevel > 1 ) mTessellationLevel--;
+            break;
+        default:
+            break;
+    }
+    
 }
 
 //--------------------------------------------------------------

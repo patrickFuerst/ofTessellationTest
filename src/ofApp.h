@@ -18,9 +18,13 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+        void drawInfo();
+    
     
         ofShader mTessellationShader;
         ofVbo mVbo;
         ofEasyCam mCam;
+    
+    int mTessellationLevel;
 		
 };

@@ -59,6 +59,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0DC25851198A71CA00C788F8 /* lighting.cs */ = {isa = PBXFileReference; lastKnownFileType = text; path = lighting.cs; sourceTree = "<group>"; };
+		0DC25852198A71CA00C788F8 /* lighting.es */ = {isa = PBXFileReference; lastKnownFileType = text; path = lighting.es; sourceTree = "<group>"; };
+		0DC25853198A71CA00C788F8 /* lighting.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = lighting.fs; sourceTree = "<group>"; };
+		0DC25854198A71CA00C788F8 /* lighting.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = lighting.vs; sourceTree = "<group>"; };
 		0DF99D9E1989A021002F46D8 /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		0DF99D9F1989A021002F46D8 /* tess.cont */ = {isa = PBXFileReference; lastKnownFileType = text; path = tess.cont; sourceTree = "<group>"; };
 		0DF99DA01989A021002F46D8 /* tess.eval */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = tess.eval; sourceTree = "<group>"; };
@@ -120,6 +124,10 @@
 		0DF99D9D1989A021002F46D8 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				0DC25851198A71CA00C788F8 /* lighting.cs */,
+				0DC25852198A71CA00C788F8 /* lighting.es */,
+				0DC25853198A71CA00C788F8 /* lighting.fs */,
+				0DC25854198A71CA00C788F8 /* lighting.vs */,
 				0DF99D9E1989A021002F46D8 /* .gitkeep */,
 				0DF99D9F1989A021002F46D8 /* tess.cont */,
 				0DF99DA01989A021002F46D8 /* tess.eval */,
