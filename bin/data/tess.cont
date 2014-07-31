@@ -1,0 +1,39 @@
+#version 400 core
+
+precision highp float;
+precision highp int;
+layout(std140, column_major) uniform;
+layout(vertices = 3) out;
+
+uniform int tessellationLevel;
+
+
+in vertex
+{
+    vec4 Color;
+    vec3 Normal;
+    vec3 TexCoord;
+}In[];
+
+
+
+out vertex
+{
+    vec4 Color;
+    vec3 Normal;
+    vec3 TexCoord;
+}Out[];
+
+void main()
+{	
+	gl_TessLevelInner[0] = tessellationLevel;
+	gl_TessLevelInner[1] = tessellationLevel;
+	gl_TessLevelOuter[0] = tessellationLevel;
+	gl_TessLevelOuter[1] = tessellationLevel;
+	gl_TessLevelOuter[2] = tessellationLevel;
+	gl_TessLevelOuter[3] = tessellationLevel;
+	gl_out[gl_InvocationID].gl_Position = gl_in[gl_InvocationID].gl_Position;
+	Out[gl_InvocationID].Color = vec4(0.5);
+	Out[gl_InvocationID].Normal = In[gl_InvocationID].Normal;
+}
+

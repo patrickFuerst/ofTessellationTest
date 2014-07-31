@@ -5,15 +5,19 @@ precision highp int;
 layout(std140, column_major) uniform;
 layout(triangles, equal_spacing, ccw) in; //equal_spacing fractional_even_spacing fractional_odd_spacing
 
-in block
+in vertex
 {
-	vec4 Color;
-} In[];
+    vec4 Color;
+    vec3 Normal;
+    vec3 TexCoord;
+}In[];
 
-out block
+out vertex
 {
-	vec4 Color;
-} Out;
+    vec4 Color;
+    vec3 Normal;
+    vec3 TexCoord;
+}Out;
 
 vec4 interpolate(in vec4 v0, in vec4 v1, in vec4 v2 )
 {

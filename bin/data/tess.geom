@@ -6,14 +6,18 @@ layout(std140, column_major) uniform;
 layout(triangles ) in;
 layout(triangle_strip, max_vertices =3) out;
 
-in block
+in vertex
 {
-	vec4 Color;
+    vec4 Color;
+    vec3 Normal;
+    vec3 TexCoord;
 } In[];
 
-out block
+out vertex
 {
-	vec4 Color;
+    vec4 Color;
+    vec3 Normal;
+    vec3 TexCoord;
 } Out;
 
 void main()
