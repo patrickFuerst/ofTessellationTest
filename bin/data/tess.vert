@@ -9,11 +9,11 @@ precision highp float;
 precision highp int;
 layout(std140, column_major) uniform;
 
-uniform mat4 MVP;
 
 layout(location = POSITION) in vec3 Position;
 layout(location = COLOR) in vec4 Color;
 layout(location = NORMAL) in vec3 Normal;
+layout(location = TEXCOORD) in vec3 TexCoord;
 
 
 out vertex
@@ -27,7 +27,8 @@ out vertex
 
 void main()
 {	
-	gl_Position = MVP * vec4(Position,  1.0);
-	Out.Color = vec4(Normal,1.0);
+	gl_Position =  vec4(Position,  1.0);
+	Out.Color = Color;
 	Out.Normal = Normal;
+	Out.TexCoord = TexCoord;
 }

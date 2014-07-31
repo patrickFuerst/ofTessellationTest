@@ -86,25 +86,6 @@ void ofApp::draw(){
     mCam.end();
     
     
-    //    glm::mat4 Projection = glm::perspective(glm::pi<float>() * 0.25f, WindowSize.x / WindowSize.y, 0.1f, 100.0f);
-    //    glm::mat4 Model = glm::mat4(1.0f);
-    //    glm::mat4 MVP = Projection * this->view() * Model;
-    //
-    //    glViewport(0, 0, static_cast<GLsizei>(WindowSize.x), static_cast<GLsizei>(WindowSize.y));
-    //    glClearBufferfv(GL_COLOR, 0, &glm::vec4(0.0f)[0]);
-    //
-    //    glUseProgram(ProgramName);
-    //    glUniformMatrix4fv(UniformMVP, 1, GL_FALSE, &MVP[0][0]);
-    //
-    //    glBindVertexArray(VertexArrayName);
-    //    glPatchParameteri(GL_PATCH_VERTICES, VertexCount);
-    //    glPatchParameterfv(GL_PATCH_DEFAULT_INNER_LEVEL, &glm::vec2(16.f)[0]);
-    //    glPatchParameterfv(GL_PATCH_DEFAULT_OUTER_LEVEL, &glm::vec4(16.f)[0]);
-    //    glDrawArraysInstanced(GL_PATCHES, 0, VertexCount, 1);
-    //    
-    //
-    
-    
     drawInfo();
 
 }
@@ -117,7 +98,7 @@ void ofApp::drawInfo(){
     "Press Key:\n"
     " +: increase tessellation level \n"
     " -: decrease tessellation level  \n"
-    " LEVEL: " + ofToString(mTessellationLevel) +"\n"
+    " Level: " + ofToString(mTessellationLevel) +"\n"
     "\n"
     "///////  ///////     ofTestTessellation \n"
     "//   //  //          patrickfuerst.at \n"

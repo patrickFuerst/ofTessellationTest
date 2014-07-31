@@ -33,7 +33,8 @@ void main()
 	gl_TessLevelOuter[2] = tessellationLevel;
 	gl_TessLevelOuter[3] = tessellationLevel;
 	gl_out[gl_InvocationID].gl_Position = gl_in[gl_InvocationID].gl_Position;
-	Out[gl_InvocationID].Color = vec4(0.5);
+	Out[gl_InvocationID].Color = In[gl_InvocationID].Color;
 	Out[gl_InvocationID].Normal = In[gl_InvocationID].Normal;
+	Out[gl_InvocationID].TexCoord = In[gl_InvocationID].TexCoord;
 }
 

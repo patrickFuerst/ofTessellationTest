@@ -5,6 +5,9 @@ precision highp int;
 layout(std140, column_major) uniform;
 layout(triangles, equal_spacing, ccw) in; //equal_spacing fractional_even_spacing fractional_odd_spacing
 
+uniform mat4 MVP;
+
+
 in vertex
 {
     vec4 Color;
@@ -28,8 +31,15 @@ vec4 interpolate(in vec4 v0, in vec4 v1, in vec4 v2 )
 }
 
 void main()
-{	
-	gl_Position = interpolate(gl_in[0].gl_Position, gl_in[1].gl_Position, gl_in[2].gl_Position);
+{
+    
+    // access something else than Out.Color will result in a linking error (crash)
+    // or nothing showing up
+    
+	gl_Position = MVP * interpolate(gl_in[0].gl_Position, gl_in[1].gl_Position, gl_in[2].gl_Position);
 	//Out.Color = interpolate(In[0].Color, In[1].Color, In[2].Color );
     Out.Color = vec4(1,0.8,0.4,1.0);
+    Out.Normal = vec3(1,0.8,0.0); // ONLY for test
+    // Out.Normal =   interpolate(In[0].Normal, In[1].Normal, In[2].Normal );
+
 }
