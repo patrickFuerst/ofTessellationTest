@@ -80,6 +80,7 @@ void ofApp::draw(){
     mTessellationShader.setUniform1i("tessellationLevel", mTessellationLevel);
     mVbo.bind();
     glPatchParameteri(GL_PATCH_VERTICES, 3);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mVbo.getIndexId());
     mVbo.drawElements(GL_PATCHES, mVbo.getNumIndices());
     //  mVbo.drawInstanced(GL_PATCHES, 0, mVbo.getNumVertices(), 1);
     mTessellationShader.end();
