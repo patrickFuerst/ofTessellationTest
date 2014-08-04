@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>331E5197-BCD7-4B58-A9B5-4985D40ECDF0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ofTestTessellation</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>6315DE5B-EC4A-445A-BFEA-9C5A8F7B7DD0</key>
+		<string>ssh://github.com/patrickFuerst/openFrameworks.git</string>
+		<key>9EC5F46B-5D3E-41FA-8454-1DFF8BB9E90F</key>
+		<string>ssh://github.com/patrickFuerst/ofTessellationTest.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>apps/myApps/ofTestTessellation/ofTestTessellation.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>6315DE5B-EC4A-445A-BFEA-9C5A8F7B7DD0</key>
+		<string>../../../../..</string>
+		<key>9EC5F46B-5D3E-41FA-8454-1DFF8BB9E90F</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/patrickFuerst/ofTessellationTest.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6315DE5B-EC4A-445A-BFEA-9C5A8F7B7DD0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9EC5F46B-5D3E-41FA-8454-1DFF8BB9E90F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofTestTessellation</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6315DE5B-EC4A-445A-BFEA-9C5A8F7B7DD0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>openFrameworks</string>
+		</dict>
+	</array>
+</dict>
+</plist>

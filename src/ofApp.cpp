@@ -47,7 +47,7 @@ void ofApp::setup(){
 //    mVbo.setColorData(colorData, 4, GL_STATIC_DRAW);
   
     //mVbo.setMesh(ofMesh::sphere(1.0f, 4, OF_PRIMITIVE_TRIANGLES), GL_STATIC_DRAW, true, false, false);
-    mVbo.setMesh(ofMesh::icosahedron(1) , GL_STATIC_DRAW, true, false, false);
+   mVbo.setMesh(ofMesh::icosahedron(1) , GL_STATIC_DRAW, true, false, false);
     
     // main camera
     mCam.lookAt(ofVec3f::zero());
@@ -80,10 +80,12 @@ void ofApp::draw(){
     mTessellationShader.setUniform1i("tessellationLevel", mTessellationLevel);
     mVbo.bind();
     glPatchParameteri(GL_PATCH_VERTICES, 3);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mVbo.getIndexId());
+    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mVbo.getIndexId());
     mVbo.drawElements(GL_PATCHES, mVbo.getNumIndices());
     //  mVbo.drawInstanced(GL_PATCHES, 0, mVbo.getNumVertices(), 1);
     mTessellationShader.end();
+    
+    
     mCam.end();
     
     
